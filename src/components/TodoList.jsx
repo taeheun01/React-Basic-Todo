@@ -49,8 +49,7 @@ const TodoList = () => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
         const newTodo = {
-          id: todo.id,
-          text: todo.text,
+          ...todo,
           completed: !todo.completed,
         };
 
@@ -80,7 +79,7 @@ const TodoList = () => {
             <p>
               {todo.text} - {String(todo.completed)}
             </p>
-            <button onClick={toggleCOmpleted(todo.id)}>완료</button>
+            <button onClick={toggleCompleted(todo.id)}>완료</button>
           </li>
         ))}
         ;
