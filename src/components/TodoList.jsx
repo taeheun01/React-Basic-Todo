@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react";forEach
 
 const SAMPLE_TODOS = [
   { id: 1, text: "출석하기", completed: false },
@@ -48,20 +48,16 @@ const TodoList = () => {
   const toggleCompleted = (id) => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
-        const newTodo = {
-          ...todo,
-          completed: !todo.completed,
+        return {
+         ...todos,
+         completed: !todo.completed
         };
-
-        return newTodo;
+      }else{
+        return todo;
       }
-
-      return todo;
     });
-
     setTodos(updatedTodos);
   };
-
 
 
 
