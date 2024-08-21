@@ -1,4 +1,4 @@
-import React, { useState } from "react";forEach
+import React, { useState } from "react";
 
 const SAMPLE_TODOS = [
   { id: 1, text: "출석하기", completed: false },
@@ -15,7 +15,6 @@ const SAMPLE_TODOS = [
 
 const TodoList = () => {
   const [todos, setTodos] = useState(SAMPLE_TODOS);
-
   const [newTodo, setNewTodo] = useState("");
 
   const handleSubmit = (e) => {
@@ -49,7 +48,8 @@ const TodoList = () => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
         return {
-         ...todos,
+         id: todo.id,
+         text: todo.text,
          completed: !todo.completed
         };
       }else{
@@ -60,12 +60,22 @@ const TodoList = () => {
   };
 
 
+ const handleDelete = (id) => {
+  const filteredTodos = todos.filter((todo) => {
+    if(todo.id === id) {
+      return false;
+    }  
+      return true;
+  }); 
+  setTodos(filteredTodos);
+ };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          name="todo"
           value={newTodo}
           onChange={handleInputChange}
           placeholder="오늘 할일을 추가해주세요!"
@@ -78,12 +88,14 @@ const TodoList = () => {
             <p>
               {todo.text} - {String(todo.completed)}
             </p>
-            <button onClick={toggleCompleted(todo.id)}>완료</button>
+            <button onClick={() => toggleCompleted(todo.id)}>완료</button>
+            <button onClick={() => handleDelete(todo.id)}>삭제</button>
           </li>
         ))}
         ;
       </ul>
     </div>
+    
   );
 };
 
